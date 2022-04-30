@@ -4,10 +4,10 @@ import com.github.pselamy.grpc.GrpcServerRunner;
 import com.google.common.collect.ImmutableSet;
 import com.google.common.collect.Range;
 import com.google.inject.AbstractModule;
-import com.google.inject.Guice;
 import com.google.inject.Inject;
 import com.google.inject.multibindings.Multibinder;
 import com.verlumen.tradestar.protos.candles.*;
+import com.verlumen.tradestar.protos.time.TimeInterval;
 import com.verlumen.tradestar.repositories.candles.CandleRepository;
 import com.verlumen.tradestar.repositories.candles.CandleRepositoryModule;
 import io.grpc.BindableService;
@@ -34,9 +34,9 @@ public class CandleServer {
             this.candleRepository = candleRepository;
         }
 
-        private static Range<Instant> getTimeRange(GetCandlesRequest req) {
-            Instant start = ofEpochSecond(req.getStart().getSeconds());
-            Instant end = ofEpochSecond(req.getEnd().getSeconds());
+        private static Range<Instant> getTimeRange(TimeInterval timeInterval) {
+            Instant start = ofEpochSecond(timeInterval.getStart().getSeconds());
+            Instant end = ofEpochSecond(timeInterval.getEnd().getSeconds());
             return Range.closedOpen(start, end);
         }
 
@@ -45,10 +45,9 @@ public class CandleServer {
                                StreamObserver<GetCandlesResponse> responseObserver) {
             checkArgument(req.hasInstrument());
             checkArgument(!req.getGranularity().equals(Granularity.UNSPECIFIED));
-            checkArgument(req.hasStart());
-            checkArgument(req.hasEnd());
+            checkArgument(req.hasTimeInterval());
             ImmutableSet<Candle> candles = candleRepository.getCandles(req.getInstrument(),
-                    req.getGranularity(), getTimeRange(req));
+                    req.getGranularity(), getTimeRange(req.getTimeInterval()));
             GetCandlesResponse reply =
                     GetCandlesResponse.newBuilder()
                             .addAllCandles(candles)
@@ -57,8 +56,6 @@ public class CandleServer {
             responseObserver.onCompleted();
         }
     }
-    
-    private enum GetCandlesConstraint {}
 
     private static class CandleServerModule extends AbstractModule {
         @Override
