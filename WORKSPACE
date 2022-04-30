@@ -26,7 +26,7 @@ git_repository(
     name = "tradestar_grpc",
     commit = "26fe735cc3fe81917cf456159a32d376ed5bbbb9",
     remote = "https://github.com/pselamy/tradestar-grpc",
-    shallow_since = "1645497038 -0600",
+    shallow_since = "1651341644 -0500",
 )
 
 git_repository(
