@@ -7,6 +7,7 @@ import com.google.inject.AbstractModule;
 import com.google.inject.Inject;
 import com.google.inject.multibindings.Multibinder;
 import com.verlumen.tradestar.protos.candles.*;
+import com.verlumen.tradestar.protos.instruments.Instrument;
 import com.verlumen.tradestar.protos.time.TimeInterval;
 import com.verlumen.tradestar.repositories.candles.CandleRepository;
 import com.verlumen.tradestar.repositories.candles.CandleRepositoryModule;
@@ -46,14 +47,19 @@ public class CandleServer {
             checkArgument(req.hasInstrument());
             checkArgument(!req.getGranularity().equals(Granularity.UNSPECIFIED));
             checkArgument(req.hasTimeInterval());
-            ImmutableSet<Candle> candles = candleRepository.getCandles(req.getInstrument(),
-                    req.getGranularity(), getTimeRange(req.getTimeInterval()));
-            GetCandlesResponse reply =
-                    GetCandlesResponse.newBuilder()
-                            .addAllCandles(candles)
-                            .build();
+            ImmutableSet<Candle> candles = getCandles(
+                    getTimeRange(req.getTimeInterval()), req.getInstrument(),
+                    req.getGranularity());
+            GetCandlesResponse reply = GetCandlesResponse.newBuilder()
+                    .addAllCandles(candles)
+                    .build();
             responseObserver.onNext(reply);
             responseObserver.onCompleted();
+        }
+
+        private ImmutableSet<Candle> getCandles(Range<Instant> timeRange, Instrument instrument, Granularity granularity) {
+            return candleRepository.getCandles(instrument, granularity,
+                    timeRange);
         }
     }
 
