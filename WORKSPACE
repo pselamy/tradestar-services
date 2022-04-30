@@ -6,7 +6,7 @@ git_repository(
     name = "grpc_server_runner",
     commit = "94c56df2c7934ae8e01a9e717fbbd16eb44d0f75",
     remote = "https://github.com/pselamy/grpc-server-runner",
-    shallow_since = "1645497038 -0600",
+    shallow_since = "1650242961 -0500",
 )
 
 git_repository(
