@@ -10,6 +10,7 @@ java_binary(
         "@tradestar_grpc//:candle_service_java_grpc",
         "@tradestar_protos//:candles_java_proto",
         "@tradestar_protos//:instruments_java_proto",
+        "@tradestar_protos//:time_java_proto",
         "@tradestar_repos//src/main/java/com/verlumen/tradestar/repositories/candles:candle_repository",
         "@tradestar_repos//src/main/java/com/verlumen/tradestar/repositories/candles:candle_repository_module",
     ],
