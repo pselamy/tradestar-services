@@ -61,7 +61,8 @@ contrib_rules_jvm_setup()
 git_repository(
     name = "rules_proto_grpc",
     remote = "https://github.com/rules-proto-grpc/rules_proto_grpc",
-    tag = "4.1.1",
+    commit = "c618f7f7c06e130b3daa4c776ce4ba2401b260a2", 
+    shallow_since = "1640903766 +0000"
 )
 
 load("@rules_proto_grpc//:repositories.bzl", "rules_proto_grpc_repos", "rules_proto_grpc_toolchains")
