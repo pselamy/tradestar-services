@@ -5,7 +5,6 @@ java_binary(
     srcs = ["CandleServer.java"],
     main_class = "com.verlumen.tradestar.candles.CandleServer",
     deps = [
-        ":candle_service_grpc",
         "@grpc_server_runner//src/main/java/com/github/pselamy/grpc:grpc_server_runner",
         "@maven//:com_google_inject_guice",
         "@tradestar_grpc//:candle_service_java_grpc",
