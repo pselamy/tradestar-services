@@ -38,7 +38,7 @@ git_repository(
 
 git_repository(
     name = "tradestar_protos",
-    commit = "6b91809c532448b24aa8eb9aa11affc82df04257",
+    commit = "13124d7710e9830767aa9931dcd2917f0349209a",
     remote = "https://github.com/pselamy/tradestar-protos",
     shallow_since = "1651376416 -0500",
 )
