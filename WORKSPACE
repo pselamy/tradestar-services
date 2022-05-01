@@ -23,6 +23,13 @@ rules_proto_dependencies()
 rules_proto_toolchains()
 
 git_repository(
+    name = "tradestar_core",
+    commit = "5c7b52d4ef7de728f24838a809821c877b031f7f",
+    remote = "https://github.com/pselamy/tradestar-core",
+    shallow_since = "1651341644 -0500",
+)
+
+git_repository(
     name = "tradestar_grpc",
     commit = "26fe735cc3fe81917cf456159a32d376ed5bbbb9",
     remote = "https://github.com/pselamy/tradestar-grpc",
@@ -60,9 +67,9 @@ contrib_rules_jvm_setup()
 
 git_repository(
     name = "rules_proto_grpc",
+    commit = "c618f7f7c06e130b3daa4c776ce4ba2401b260a2",
     remote = "https://github.com/rules-proto-grpc/rules_proto_grpc",
-    commit = "c618f7f7c06e130b3daa4c776ce4ba2401b260a2", 
-    shallow_since = "1640903766 +0000"
+    shallow_since = "1640903766 +0000",
 )
 
 load("@rules_proto_grpc//:repositories.bzl", "rules_proto_grpc_repos", "rules_proto_grpc_toolchains")
