@@ -99,6 +99,7 @@ maven_install(
         "com.google.guava:guava:31.1-jre",
         "com.google.inject:guice:5.1.0",
         "io.grpc:grpc-api:1.45.1",
+        "org.apache.commons:commons-lang3:3.12.0",
         "org.ta4j:ta4j-core:0.14",
     ] + IO_GRPC_GRPC_JAVA_ARTIFACTS,
     generate_compat_repositories = True,
