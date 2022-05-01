@@ -7,7 +7,7 @@ java_binary(
     deps = [
         "@grpc_server_runner//src/main/java/com/github/pselamy/grpc:grpc_server_runner",
         "@maven//:com_google_inject_guice",
-        "@tradestar_core//src/main/java'com/verlumen/tradestar/core/tradehistory:bar_series_factory",
+        "@tradestar_core//src/main/java/com/verlumen/tradestar/core/tradehistory:bar_series_factory",
         "@tradestar_grpc//:candle_service_java_grpc",
         "@tradestar_protos//:candles_java_proto",
         "@tradestar_protos//:instruments_java_proto",
