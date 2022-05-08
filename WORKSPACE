@@ -51,6 +51,31 @@ git_repository(
 )
 
 git_repository(
+    name = "io_bazel_rules_docker",
+    commit = "6ea707babdcd54514e0884278ac624fb8bda19c1",
+    remote = "https://github.com/bazelbuild/rules_docker",
+    shallow_since = "1650388068 -0700",
+)
+
+load(
+    "@io_bazel_rules_docker//repositories:repositories.bzl",
+    container_repositories = "repositories",
+)
+
+container_repositories()
+
+load("@io_bazel_rules_docker//repositories:deps.bzl", container_deps = "deps")
+
+container_deps()
+
+load(
+    "@io_bazel_rules_docker//java:image.bzl",
+    _java_image_repos = "repositories",
+)
+
+_java_image_repos()
+
+git_repository(
     name = "contrib_rules_jvm",
     commit = "f7c08ec6d73ef691b03f843e0c2c3dbe766df584",
     remote = "https://github.com/bazel-contrib/rules_jvm",

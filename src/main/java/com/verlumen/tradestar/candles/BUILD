@@ -1,12 +1,16 @@
+load("@io_bazel_rules_docker//java:image.bzl", "java_image")
 load("@rules_proto_grpc//java:defs.bzl", "java_grpc_library")
 
-java_binary(
+java_image(
     name = "candle_server",
     srcs = ["CandleServer.java"],
     main_class = "com.verlumen.tradestar.candles.CandleServer",
+    visibility = [
+        "//:__subpackages__",
+    ],
     deps = [
-        "@grpc_server_runner//src/main/java/com/github/pselamy/grpc:grpc_server_runner",
         ":candle_server_module",
+        "@grpc_server_runner//src/main/java/com/github/pselamy/grpc:grpc_server_runner",
     ],
 )
 
