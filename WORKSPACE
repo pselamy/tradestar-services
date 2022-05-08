@@ -26,7 +26,7 @@ git_repository(
     name = "tradestar_core",
     commit = "6bd2e3cbb1826734a0a711ae6ddcc06519a5a36f",
     remote = "https://github.com/pselamy/tradestar-core",
-    shallow_since = "1651366652 -0500",
+    shallow_since = "1651425658 -0500",
 )
 
 git_repository(
@@ -40,7 +40,7 @@ git_repository(
     name = "tradestar_protos",
     commit = "13124d7710e9830767aa9931dcd2917f0349209a",
     remote = "https://github.com/pselamy/tradestar-protos",
-    shallow_since = "1651376416 -0500",
+    shallow_since = "1651418635 -0500",
 )
 
 git_repository(
