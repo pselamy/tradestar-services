@@ -12,7 +12,7 @@ jobs:
           path: "~/.cache/bazel"
           key: bazel
       - name: Build artifacts
-      - run: |
+        run: |
           bazel build //:push_latest_candle_service \
             --define project=${{ secrets.PROJECT_ID }} \
             --define registry=${{ secrets.REGISTRY }} \
