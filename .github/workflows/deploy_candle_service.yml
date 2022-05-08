@@ -11,6 +11,12 @@ jobs:
         with:
           path: "~/.cache/bazel"
           key: bazel
+      - name: Load GCR Credentials
+        uses: GoogleCloudPlatform/github-actions/setup-gcloud@master
+        with:
+          service_account_key: ${{ secrets.GCR_DEVOPS_SERVICE_ACCOUNT_KEY }}
+          project_id: ${{ secrets.PROJECT_ID }}
+          export_default_credentials: true
       - name: Build artifacts
         run: |
           bazel build //:push_latest_candle_service \
