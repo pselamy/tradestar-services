@@ -24,3 +24,10 @@ jobs:
             --define registry=${{ secrets.REGISTRY }} \
             --define tag=$GITHUB_SHA \
             --sandbox_debug
+      - name: Deploy service
+        run: |
+          bazel run //:push_latest_candle_service \
+            --define project=${{ secrets.PROJECT_ID }} \
+            --define registry=${{ secrets.REGISTRY }} \
+            --define tag=$GITHUB_SHA \
+            --sandbox_debug
