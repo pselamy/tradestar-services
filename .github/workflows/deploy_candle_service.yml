@@ -26,7 +26,7 @@ jobs:
           export_default_credentials: true
       - name: Configure Docker/GCR Auth
         run: gcloud auth configure-docker -q
-      - name: Deploy service
+      - name: Deploy container to GCR
         run: |
           bazel run //:push_latest_candle_service \
             --define project=${{ secrets.PROJECT_ID }} \
