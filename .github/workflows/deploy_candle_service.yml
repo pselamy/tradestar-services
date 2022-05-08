@@ -1,0 +1,20 @@
+name: Bazel Build
+on: [ push ]
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: bazelbuild/setup-bazelisk@v1
+      - name: Mount bazel cache  # Optional
+        uses: actions/cache@v2
+        with:
+          path: "~/.cache/bazel"
+          key: bazel
+      - name: Build artifacts
+      - run: |
+          bazel build //:push_latest_candle_service \
+            --define project=${{ secrets.PROJECT_ID }} \
+            --define registry=${{ secrets.REGISTRY }} \
+            --define tag=$GITHUB_SHA \
+            --sandbox_debug
