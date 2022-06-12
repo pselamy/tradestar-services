@@ -5,7 +5,7 @@ on:
     branches:    
       - main
 jobs:
-  test:
+  build:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
@@ -17,13 +17,13 @@ jobs:
           key: bazel
       - name: Run tests
         run: |
-          bazel test //... \
+          bazel build //... \
             --define project=${{ secrets.PROJECT_ID }} \
             --define registry=${{ secrets.REGISTRY }} \
             --define tag=$GITHUB_SHA \
             --sandbox_debug
   deploy:
-    needs: [test]
+    needs: [build]
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
