@@ -22,6 +22,7 @@ jobs:
             --define tag=$GITHUB_SHA \
             --sandbox_debug
   deploy:
+    needs: [test]
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
