@@ -15,7 +15,7 @@ jobs:
         with:
           path: "~/.cache/bazel"
           key: bazel
-      - name: Deploy container to GCR
+      - name: Run tests
         run: |
           bazel test //... \
             --define project=${{ secrets.PROJECT_ID }} \
